@@ -17,12 +17,12 @@ if [[ ! -d "$HOME/.bin/" ]]; then
   mkdir "$HOME/.bin"
 fi
 
-if [ ! -f "$HOME/.zshrc" ]; then
-  touch $HOME/.zshrc
+if [ ! -f "$HOME/.bashrc" ]; then
+  touch $HOME/.bashrc
 fi
 
 if [[ ":$PATH:" != *":$HOME/.bin:"* ]]; then
-  printf 'export PATH="$HOME/.bin:$PATH"\n' >> ~/.zshrc
+  printf 'export PATH="$HOME/.bin:$PATH"\n' >> ~/.bashrc
   export PATH="$HOME/.bin:$PATH"
 fi
 ### end common-components/check-home-bin
@@ -32,24 +32,14 @@ fancy_echo() {
 }
 ### end common-components/shared-functions
 
-fancy_echo "Changing your shell to zsh ..."
-  chsh -s $(which zsh)
-### end common-components/zsh
-
-if [[ -f /etc/zshenv ]]; then
-  fancy_echo "Fixing OSX zsh environment bug ..."
-    sudo mv /etc/{zshenv,zshrc}
-fi
-### end mac-components/zsh-fix
-
 if ! command -v brew &>/dev/null; then
   fancy_echo "Installing Homebrew, a good OS X package manager ..."
     ruby <(curl -fsS https://raw.githubusercontent.com/Homebrew/homebrew/go/install)
 
-  if ! grep -qs "recommended by brew doctor" ~/.zshrc; then
+  if ! grep -qs "recommended by brew doctor" ~/.bashrc; then
     fancy_echo "Put Homebrew location earlier in PATH ..."
-      printf '\n# recommended by brew doctor\n' >> ~/.zshrc
-      printf 'export PATH="/usr/local/bin:$PATH"\n' >> ~/.zshrc
+      printf '\n# recommended by brew doctor\n' >> ~/.bashrc
+      printf 'export PATH="/usr/local/bin:$PATH"\n' >> ~/.bashrc
       export PATH="/usr/local/bin:$PATH"
   fi
 else
@@ -99,8 +89,8 @@ fancy_echo "Installing rbenv, to change Ruby versions ..."
   brew install rbenv
 
   if ! grep -qs "rbenv init" ~/.zshrc; then
-    printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.zshrc
-    printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.zshrc
+    printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.bashrc
+    printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.bashrc
 
     fancy_echo "Enable shims and autocompletion ..."
       eval "$(rbenv init -)"
