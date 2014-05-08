@@ -1,0 +1,10 @@
+fancy_echo "Setting COMPOSER_HOME to /usr/local/composer"
+
+if [[ "$COMPOSER_HOME" != "/usr/local/composer ]]; then
+  printf 'export COMPOSER_HOME="/usr/local/composer"\n' >> ~/.bashrc
+  export COMPOSER_HOME="/usr/local/composer"
+fi
+
+composer global require 'drush/drush=dev-master'
+
+composer global install
