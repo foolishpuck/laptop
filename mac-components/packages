@@ -31,7 +31,7 @@ fancy_echo "Installing watch, to execute a program periodically and show the out
 fancy_echo "Installing composer, for php package management ..."
   brew tap josegonzalez/homebrew-php
   brew tap homebrew/versions
-  brew install composer
+  brew install php55 composer
 
 fancy_echo "Installing drush, for managing drupal sites ..."
   brew install --HEAD drush
