@@ -92,10 +92,6 @@ fancy_echo "Installing node, to render the rails asset pipeline ..."
   sudo aptitude install -y nodejs
 ### end linux-components/debian-derivative-packages
 
-fancy_echo "Changing your shell to zsh ..."
-  chsh -s $(which zsh)
-### end common-components/zsh
-
 if ! command -v ag &>/dev/null; then
   fancy_echo "Installing The Silver Searcher (better than ack or grep) to search the contents of files ..."
     git clone git://github.com/ggreer/the_silver_searcher.git /tmp/the_silver_searcher
@@ -113,9 +109,9 @@ if [[ ! -d "$HOME/.rbenv" ]]; then
   fancy_echo "Installing rbenv, to change Ruby versions ..."
     git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
 
-    if ! grep -qs "rbenv init" ~/.zshrc; then
-      printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.zshrc
-      printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.zshrc
+    if ! grep -qs "rbenv init" ~/.bashrc; then
+      printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.bashrc
+      printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.bashrc
     fi
 
     export PATH="$HOME/.rbenv/bin:$PATH"

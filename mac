@@ -79,7 +79,15 @@ fancy_echo "Installing QT, used by Capybara Webkit for headless Javascript integ
 
 fancy_echo "Installing watch, to execute a program periodically and show the output ..."
   brew install watch
-### end mac-components/packages
+
+fancy_echo "Installing composer, for php package management ..."
+  brew install composer
+
+fancy_echo "Installing drush, for managing drupal sites ..."
+  brew install --HEAD drush
+  brew switch drush HEAD
+  cd /usr/local/Cellar/drush/HEAD/libexec
+  composer install### end mac-components/packages
 
 fancy_echo "Starting Postgres ..."
   brew services start postgres
