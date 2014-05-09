@@ -1,12 +1,18 @@
 if [[ ! -d "$HOME/.bin/" ]]; then
-  mkdir "$HOME/.bin"
+    mkdir "$HOME/.bin"
+fi
+
+if [ ! -f "$HOME/.profile" ]; then
+    touch $HOME/.profile
+    printf 'test -f ~/.bashrc && source ~/.bashrc\n' >> ~/.profile
 fi
 
 if [ ! -f "$HOME/.bashrc" ]; then
-  touch $HOME/.bashrc
+    touch $HOME/.bashrc
 fi
 
 if [[ ":$PATH:" != *":$HOME/.bin:"* ]]; then
-  printf 'export PATH="$HOME/.bin:$PATH"\n' >> ~/.bashrc
-  export PATH="$HOME/.bin:$PATH"
+    printf 'export PATH=$HOME/.bin:$PATH\n' >> ~/.bashrc
+    export PATH=$HOME/.bin:$PATH
 fi
+

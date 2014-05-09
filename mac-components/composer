@@ -1,10 +1,25 @@
-fancy_echo "Setting COMPOSER_HOME to /usr/local/composer"
+fancy_echo "Installing Composer"
 
-if [[ "$COMPOSER_HOME" != "/usr/local/composer ]]; then
-  printf 'export COMPOSER_HOME="/usr/local/composer"\n' >> ~/.bashrc
-  export COMPOSER_HOME="/usr/local/composer"
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
+if ! grep -qs "Composer Settings" ~/.bashrc; then
+    printf '\n# Composer Settings\n' >> ~/.bashrc
+    printf 'export COMPOSER_HOME=/usr/local/composer\n' >> ~/.bashrc
+    export COMPOSER_HOME=/usr/local/composer
+    printf 'export PATH=/usr/local/composer/vendor/bin:$PATH\n' >> ~/.bashrc
+    export PATH=/usr/local/composer/vendor/bin:$PATH
+    printf '\n' >> ~/.bashrc
 fi
 
-composer global require 'drush/drush=dev-master'
 
-composer global install
+fancy_echo "Installing Drush ..."
+composer global require 'drush/drush=dev-master'
+fancy_echo "Installing PHPUnit ..."
+composer global require 'phpunit/phpunit=4.1.*'
+fancy_echo "Installing PHP_Invoker ..."
+composer global require 'phpunit/php-invoker=*'
+fancy_echo "Installing DbUnit ..."
+composer global require 'phpunit/dbunit=1.2'
+fancy_echo "Installing PHPUnit_Selenium ..."
+composer global require 'phpunit/phpunit-selenium=1.3.*'

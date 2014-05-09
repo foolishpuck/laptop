@@ -5,5 +5,14 @@ common-components/check-home-bin
 common-components/shared-functions
 mac-components/homebrew
 mac-components/packages
+mac-components/composer
+mac-components/start-services
+mac-components/rbenv
 mac-components/compiler-and-libraries
+common-components/ruby-environment
+mac-components/bundler
+common-components/default-gems
+mac-components/heroku
+mac-components/github
+mac-components/rcm
 common-components/personal-additions
